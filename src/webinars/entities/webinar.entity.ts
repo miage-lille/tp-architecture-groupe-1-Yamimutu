@@ -10,6 +10,9 @@ type WebinarProps = {
   seats: number;
 };
 export class Webinar extends Entity<WebinarProps> {
+  hasAvailableSeat(participants: number): boolean {
+    return participants >= this.props.seats;
+  }
   isTooSoon(now: Date): boolean {
     const diff = differenceInDays(this.props.startDate, now);
     return diff < 3;
